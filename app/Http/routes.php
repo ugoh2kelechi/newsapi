@@ -17,7 +17,7 @@ Route::get('home', 'HomeController@index');
 
 
 Route::Resource('makers','MakerController',['except' => ['store','edit'] ]);
-Route::Resource('vehicles','VehicleController',['only' => ['index']);
+Route::Resource('vehicles','VehicleController',['only' => ['index']]);
 
 Route::resource('makers.vehicles','MakerVehiclesController',['except' => ['edit','create']]);
 
