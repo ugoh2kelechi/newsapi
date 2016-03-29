@@ -14,7 +14,9 @@ class VehicleController extends Controller {
 	 */
 	public function index()
 	{
-		
+		$vehicles = VehicleController::all();
+
+		return response()->json(["VehicleData"=>$vehicles],200);
 	}
 
 	

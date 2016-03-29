@@ -19,7 +19,7 @@ class MakerController extends Controller {
 	{
 		$makers = Makers::all();
 
-		return response()->json($makers, 200);
+		return response()->json(["MakerData" => $makers], 200);
 	}
 
 	/**
@@ -50,7 +50,13 @@ class MakerController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$maker = Makers::find($id);
+
+		if(!$maker){
+			return response()->json(['Error_Report' => 'This maker does not exist', 'Error Code' => '404'],404);
+		}
+
+		return response()->json(['MakerData'=> $maker], 200);
 	}
 
 
