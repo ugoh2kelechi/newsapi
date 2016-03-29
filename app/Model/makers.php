@@ -1,8 +1,9 @@
-<?php namespace App;
+<?php namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class makers extends Model {
+class Makers extends Model {
 
-	$table = 'makers';
+	//
+
 }

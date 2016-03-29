@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Model\Makers;
+
+
 class MakerController extends Controller {
 
 	/**
@@ -14,7 +17,9 @@ class MakerController extends Controller {
 	 */
 	public function index()
 	{
-		return 'am in makers index';
+		$makers = Makers::all();
+
+		return response()->json($makers, 200);
 	}
 
 	/**
