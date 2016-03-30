@@ -14,18 +14,17 @@ class DatabaseSeeder extends Seeder {
 
 	public function run()
 	{
-		/*
+		
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
 		DB::table('makers')->delete();
 		DB::table('vehicles')->delete();
 
+		Model::unguard();
+
 		$this->call('MakerSeed');
 		$this->call('VehiclesSeed');
 
-		*/
-
-		Model::unguard();
 
 		Model::reguard();
 	}
