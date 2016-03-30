@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Model\Makers;
+use App\Model\Maker;
 
 
 class MakerController extends Controller {
@@ -17,7 +17,7 @@ class MakerController extends Controller {
 	 */
 	public function index()
 	{
-		$makers = Makers::all();
+		$makers = Maker::all();
 
 		return response()->json(["MakerData" => $makers], 200);
 	}
@@ -50,7 +50,7 @@ class MakerController extends Controller {
 	 */
 	public function show($id)
 	{
-		$maker = Makers::find($id);
+		$maker = Maker::find($id);
 
 		if(!$maker){
 			return response()->json(['Error_Report' => 'This maker does not exist', 'Error Code' => '404'],404);

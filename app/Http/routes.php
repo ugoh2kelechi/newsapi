@@ -16,10 +16,10 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 
-Route::Resource('makers','MakerController',['except' => ['store','edit'] ]);
-Route::Resource('vehicles','VehicleController',['only' => ['index']]);
+Route::resource('makers','MakerController',['except' => ['store','edit'] ]);
+Route::resource('vehicles','VehicleController',['only' => ['index']]);
 
-Route::resource('makers.vehicles','MakerVehiclesController',['except' => ['edit','create']]);
+Route::resource('maker.vehicle','MakerVehiclesController',['except' => ['edit','create']]);
 
 
 

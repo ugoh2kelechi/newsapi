@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Model\Maker;
+use App\Model\Vehicle;
+
 class MakerVehiclesController extends Controller {
 
 	/**
@@ -14,7 +17,14 @@ class MakerVehiclesController extends Controller {
 	 */
 	public function index($id)
 	{
-		return 'this is the makers vehicles id of '.$id;
+		$makers = Maker::find($id);
+
+		if(!$makers)
+		{
+			return response()->json(['Error_msg'=>'No record with the id was retrived', 'Error_code' => 404], 404);
+		}
+
+		return response()->json(['results' => $makers->vehicles], 200);
 
 	}
 
@@ -35,9 +45,28 @@ class MakerVehiclesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id,$vehicleId)
 	{
-		//
+		
+		
+			$maker = Maker::find($id);
+
+			if(!$maker)
+			{
+				return response()->json(['Error_msg ' => 'No value of the provided valus could be retrieved', 'Error_code: ' => 404], 404);
+			}
+
+			$vehicle = $maker->vehicles->find($vehicleId);
+
+			if(!$vehicle)
+			{
+				return response()->json(['error '=> 'No vehicle was returned for this maker.', 'errorCode: '=> '404'], 404);
+			}
+
+			return response()->json(['Status '=>$vehicle ], 200);
+
+		
+
 	}
 
 
