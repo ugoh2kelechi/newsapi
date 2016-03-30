@@ -63,9 +63,7 @@ class MakerVehiclesController extends Controller {
 				return response()->json(['error '=> 'No vehicle was returned for this maker.', 'errorCode: '=> '404'], 404);
 			}
 
-			return response()->json(['Status '=>$vehicle ], 200);
-
-		
+			return response()->json(['Status '=> $vehicle], 200);	
 
 	}
 
