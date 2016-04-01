@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Model\Maker;
 use App\Model\Vehicle;
 
+use App\Http\Requests\CreateVehicleRequest;
+
 class MakerVehiclesController extends Controller {
 
 	/**
@@ -34,9 +36,22 @@ class MakerVehiclesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateVehicleRequest $request, $makerId)
 	{
-		//
+		$maker = Maker::find($makerId);
+
+		if(!$maker)
+		{
+			return response()->json(['Error_msg'=>'No record with the maker id was retrived', 'Error_code' => 404], 404);
+		}
+
+		$values = $request->all();
+
+		$maker->vehicles()->create($values);
+
+		
+		return response()->json(['message'=>'The Vehicle associated was created.'],201);
+
 	}
 
 	/**
