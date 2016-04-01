@@ -9,6 +9,7 @@ use App\Model\Maker;
 use App\Model\Vehicle;
 
 use App\Http\Requests\CreateVehicleRequest;
+use App\Http\Requests\CreateMakerRequest;
 
 class MakerVehiclesController extends Controller {
 
@@ -89,9 +90,37 @@ class MakerVehiclesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(CreateVehicleRequest $request, $id, $vehicleId)
 	{
-		//
+		$maker = Maker::find($id);
+
+		if(!$maker)
+			{
+				return response()->json(['Error_msg ' => 'No maker id of such was found', 'Error_code: ' => 404], 404);
+			}
+
+		$vehicle = $maker->vehicles->find($vehicleId);
+
+		if(!$vehicle){
+			return response()->json(['Error Message'=> 'Vehicle id was not found.','Error code'=> 404], 404);
+		}
+
+
+
+			$code = $request->get('code');
+			$power = $request->get('power');
+			$capacity = $request->get('capacity');
+			$speed = $request->get('speed');
+
+			$vehicle->code = $code;
+			$vehicle->phone = $power;
+			$vehicle->phone = $capacity;
+			$vehicle->phone = $speed;
+
+			$vehicle->save();
+
+			return response()->json(['msg'=>'Vehicle details was updated'], 200);
+
 	}
 
 	/**
